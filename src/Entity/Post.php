@@ -2,10 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\PostRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\PostRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=PostRepository::class)
@@ -16,26 +17,31 @@ class Post
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups("show_post")
      */
     private $id;
-
+    
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("show_post")
      */
     private $title;
-
+    
     /**
      * @ORM\Column(type="text")
+     * @Groups("show_post")
      */
     private $content;
-
+    
     /**
      * @ORM\Column(type="datetime")
+     * @Groups("show_post")
      */
     private $createdAt;
-
+    
     /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="post", orphanRemoval=true)
+     * @Groups("show_post")
      */
     private $comments;
 
