@@ -7,6 +7,8 @@ use App\Repository\PostRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass=PostRepository::class)
@@ -24,18 +26,22 @@ class Post
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("show_post")
+     * @Assert\NotBlank(message="must have a title")
+     * 
      */
     private $title;
     
     /**
      * @ORM\Column(type="text")
      * @Groups("show_post")
+     * @Assert\NotBlank(message="must have a content")
      */
     private $content;
     
     /**
      * @ORM\Column(type="datetime")
      * @Groups("show_post")
+     * @Assert\NotBlank(message="must have a date of creation")
      */
     private $createdAt;
     
